@@ -1,0 +1,15 @@
+face_recognition/__init__.py,sha256=W4Rikky1s904_CNtF65K1ALPPj1xiXW-foI1pbg3avQ,246
+face_recognition/api.py,sha256=qNa3IHoVst_XF4bywFr6QEiEbI7iTiWzXpvuVrUkzb4,9277
+face_recognition/cli.py,sha256=AErZLUK4zMD0iRcOYkY9GBArgX0VrCDXKo-vxP1I8mI,4634
+face_recognition-1.0.0.dist-info/DESCRIPTION.rst,sha256=_kl39HG4BoZVgICZW7_BF6s2uikpRGJlpz8zXZcYeic,18601
+face_recognition-1.0.0.dist-info/METADATA,sha256=w1lezRSh84a9N3pk5JJXFkmFk19senN7d3CUAR9r_VU,19656
+face_recognition-1.0.0.dist-info/RECORD,,
+face_recognition-1.0.0.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+face_recognition-1.0.0.dist-info/entry_points.txt,sha256=_E-C4Ey17oCQWPeU_4u-3O2yqmrLaWTHrykvpzlq88I,64
+face_recognition-1.0.0.dist-info/metadata.json,sha256=LPYciex8Q2Fc3BqTgLReUT3uPqk5FMjR0z_SaN_71oo,1363
+face_recognition-1.0.0.dist-info/top_level.txt,sha256=ExXWSKN18HXPKa1CC6ev3GV-Be75gpzSrm4bZElYfbQ,17
+../../../bin/face_recognition,sha256=n_p9r8__fCo-LZkB4AR8lIDZvOaj7DhGX4tzHBnIw2A,257
+face_recognition-1.0.0.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+face_recognition/__pycache__/__init__.cpython-36.pyc,,
+face_recognition/__pycache__/api.cpython-36.pyc,,
+face_recognition/__pycache__/cli.cpython-36.pyc,,
