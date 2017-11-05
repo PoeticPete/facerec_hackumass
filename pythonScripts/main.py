@@ -31,9 +31,16 @@ def attemptToOpenDoor(name):
     Attempt to open door with a name. If name is not unknown, the door should
     open.
     '''
-    print(name)
-    if name != "Unknown":
+    firebase_helper.lock.acquire()
+    print('READ firebase_helper.is_locked=', str(firebase_helper.is_locked))
+
+    if name != "Unknown" and firebase_helper.is_locked:
+        print("unlocking!")
         firebase_helper.db.child("doors/door1").update({"status": False, "lastChanged":{".sv": "timestamp"}})
+    else:
+        print("not unlocking!" + str(firebase_helper.is_locked))
+
+    firebase_helper.lock.release()
 
 # counter used to process only certain frames
 counter = 0

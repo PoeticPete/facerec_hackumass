@@ -3,6 +3,8 @@ import pyrebase                     # connect with Firebase
 import threading                    # run on background thread
 import urllib.request               # get image from web
 
+lock = threading.Lock()
+
 # configure firebase
 config = {
     "apiKey": "AIzaSyC3tcDJPD4nXPslkhZ7gscE8p9Im4Gw00s",
@@ -20,6 +22,11 @@ names = []
 # store face encodings in an array
 known_encodings = []
 
+print("set is_locked=False")
+
+# stores status of the door
+is_locked = False
+
 
 # Initialize some variables
 face_locations = []
@@ -35,7 +42,6 @@ def send_frame_to_database(key, picture_path, name):
 
     storage.child("images/" + key).put(picture_path)
     url = storage.child("images/" + key).get_url(None)
-
     upload_dict = {"name": name, "timestamp":{".sv": "timestamp"}, "photoURL": url}
     db.child("savedFrames/door1").child(key).set(upload_dict)
 
@@ -43,9 +49,9 @@ def send_frame_to_database(key, picture_path, name):
     FUNCTION: handles the real time firebase data stream. When a new photo is added to the database, it is synced in real time with this computer.
 '''
 def stream_handler(message):
-    print("got a message")
-    print(message["event"]) # put
-    print(message["path"]) # /-K7yGTTEp7O549EzTYtI
+    # print("got a message")
+    # print(message["event"]) # put
+    # print(message["path"]) # /-K7yGTTEp7O549EzTYtI
 
     if message["data"]:
         file_name = "faces/"
@@ -72,7 +78,7 @@ def stream_handler(message):
                 for key,value in data.items():
                     mediaURL = str(value["mediaURL"])
                     name = str(value["name"])
-                    print(mediaURL, name)
+                    # print(mediaURL, name)
                     urllib.request.urlretrieve(mediaURL, file_name + name)
                     try:
                         tmp = face_recognition.face_encodings(face_recognition.load_image_file(file_name + name))[0]
@@ -103,3 +109,36 @@ def startStream():
 # start stream on another thread so the camera can run on main thread
 firebaseThread = FirebaseStreamer("FirebaseStreamer")
 firebaseThread.start()
+
+
+'''
+Handle door locking and unlocking
+
+'''
+def door_stream_handler(message):
+    global is_locked
+    print(message["data"])
+    if message["data"]:
+        curr_status = message["data"].get("status", None)
+        if curr_status is not None:
+            lock.acquire()
+            is_locked = message["data"]["status"]
+            lock.release()
+            # print("SET is_locked=" + str(message["data"].get("status", None)))
+
+'''
+    FUNCTION: starts the stream at the given database location, and handles the stream with the stream_handler function
+'''
+class DoorStreamer(threading.Thread):
+   def __init__(self, threadID, ):
+      threading.Thread.__init__(self)
+      self.threadID = threadID
+   def run(self):
+      startDoorStream()
+
+def startDoorStream():
+    db.child("doors/door1").stream(door_stream_handler)
+
+# start stream on another thread so the camera can run on main thread
+doorThread = DoorStreamer("DoorStreamer")
+doorThread.start()
