@@ -3,6 +3,8 @@ Easy Lock
 
 Easy Lock is a facial recognition door lock that gives the owner the ability to control their front door remotely and powerfully.
 
+[Project Charter](https://docs.google.com/document/d/119VzLNWzyVlWQdkTLMF_wxw1EIc71Ug8HUvp2OLpoes/edit?usp=sharing)
+
 Documentation is available at the following URL:
 [http://hackumass-docs.s3-website-us-east-1.amazonaws.com/](http://hackumass-docs.s3-website-us-east-1.amazonaws.com/)
 
