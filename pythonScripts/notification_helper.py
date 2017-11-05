@@ -55,7 +55,7 @@ def sendNotifications():
             notification_key = notification[2]
             save_frame("saved_frames/" + notification_key + ".jpg", notification_frame)
             firebase_helper.send_frame_to_database(notification_key, "saved_frames/" + notification_key + ".jpg", notification_name)
-            send_FCM_Notification(notification_name)
+            # send_FCM_Notification(notification_name)
 
 notificationThread = NotificationSender("NotificationSender")
 notificationThread.start()
