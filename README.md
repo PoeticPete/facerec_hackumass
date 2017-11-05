@@ -7,6 +7,15 @@ Mobile Application
 ---------------
 The Mobile Application provides a User Interface to communicate with the backend. It allows the user to unlock or lock their door with the press of a button, examine and search a list of detected faces at their front door, and update the list of recognizable contacts.
 
+####People Tab
+The people tab lists the faces of the people who are registered to gain access through the door. 
+
+#####Add button
+The add buttons open the camera and allow the user to take a picture of a new face to register them to be recognized by the camera.
+
+#####Person struct
+The Person struct defines a single contact stored in the application. Information contained in the person struct includes the URL corresponding to the person's image, the saved name, the timestamp, and a key to upload to the database.
+
 Google Cloud Functions
 ---------------
 Google Cloud Functions take the input from the camera and send the image, along with the matched name, to the Amazon SNS service to be published.
@@ -41,7 +50,7 @@ Python Facial Recognition
 The facial recognition technology scans the image displayed by the front door every 5 frames and uses machine learning modules to compare the image to the known faces stored by the user.
 
 
-Firebase Contact Storage and Image Processing
+Firebase Synchronized Storage
 ---------------
 Firebase is a basic database with real-time synchronization to store the contacts and the images corresponding to the faces at the front door.
 
