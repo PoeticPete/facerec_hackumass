@@ -141,12 +141,6 @@ Algolia is a powerful search engine and database to store the pictures and conta
 Python Facial Recognition
 ---------------
 
-The facial recognition technology scans the image displayed by the front door every 5 frames and uses machine learning modules to compare the image to the known faces stored by the user.
-
-The python file, main.py, runs an infinite loop recording out of the webcam. Every fifth frame, the video is analyzed to find any faces present. If there are any faces detected, then the program will display a box in the image around the face. If this face has been matched with any others, then the box will be green. Otherwise, the box will be red. 
-
-The program determines the "distance" between the face in the image and each face in the database. If the distance is below a certain threshold, then there is a match. The threshold has been put at 0.55 because empirical results show this to be the most consistent value. Consistency is based on the number of false positives and false negatives. 
-
 ``` python
 
 # start the camera stream on the main thread
@@ -198,6 +192,12 @@ while True:
     # Display the resulting image
     cv2.imshow('Video', frame)
 ```
+
+The facial recognition technology scans the image displayed by the front door every 5 frames and uses machine learning modules to compare the image to the known faces stored by the user.
+
+The python file, main.py, runs an infinite loop recording out of the webcam. Every fifth frame, the video is analyzed to find any faces present. If there are any faces detected, then the program will display a box in the image around the face. If this face has been matched with any others, then the box will be green. Otherwise, the box will be red.
+
+The program determines the "distance" between the face in the image and each face in the database. If the distance is below a certain threshold, then there is a match. The threshold has been put at 0.55 because empirical results show this to be the most consistent value. Consistency is based on the number of false positives and false negatives.
 
 Firebase Storage
 ---------------
