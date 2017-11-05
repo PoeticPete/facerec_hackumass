@@ -88,7 +88,25 @@ The Shine tab provides functionality and compatibility with the [Liberty Mutual 
 Google Cloud Functions
 ---------------
 
-Google Cloud Functions take the input from the camera and send the image, along with the matched name, to the Amazon SNS service to be published.
+Google Cloud Functions listens for "create" events in Firebase and publishes the data to Amazon SNS. The data in this proof of concept project are the "savedFrames" for the purpose of monitoring. Amazon SNS then relays the data to the respective subscribers.
+
+``` javascript
+
+exports.publishFrame = functions.database.ref('/savedFrames/door1/{id}').onCreate(event => {
+  var sns = new AWS.SNS();
+  sns.publish({
+      Message: JSON.stringify(event.data),
+      TopicArn: '[Amazon Resource Number]'
+  }, function(err, data) {
+      if (err) {
+          return;
+      }
+      const newData = event.data.val();
+      return 1;
+  });
+});
+
+```
 
 Amazon SNS
 ---------------
