@@ -17,7 +17,7 @@ face-recognition==1.0.0
 face-recognition-models==0.3.0
 gcloud==0.17.0
 googleapis-common-protos==1.5.3
-httplib2==0.10.3
+httplib2==0.19.0
 idna==2.6
 jmespath==0.9.3
 jws==0.1.3
